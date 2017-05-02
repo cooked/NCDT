@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.eclipse.ncdt.gcode
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.eclipse.ncdt.gcode; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib,
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.xtend.lib,
+ org.eclipse.emf.common
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.eclipse.ncdt.gCode.util,
+ org.eclipse.ncdt.scoping,
+ org.eclipse.ncdt,
+ org.eclipse.ncdt.services,
+ org.eclipse.ncdt.generator,
+ org.eclipse.ncdt.parser.antlr.internal,
+ org.eclipse.ncdt.parser.antlr,
+ org.eclipse.ncdt.gCode,
+ org.eclipse.ncdt.serializer,
+ org.eclipse.ncdt.gCode.impl,
+ org.eclipse.ncdt.validation
+Import-Package: org.apache.log4j

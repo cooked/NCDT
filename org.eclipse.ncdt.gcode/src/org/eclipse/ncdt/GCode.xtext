@@ -1,0 +1,38 @@
+grammar org.eclipse.ncdt.GCode hidden(WS, SL_COMMENT) //with org.eclipse.xtext.common.Terminals
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+generate gCode "http://www.eclipse.org/ncdt/GCode"
+
+// implementation of 
+// https://en.wikipedia.org/wiki/G-code
+
+Model:
+	Blocks+=Block+;
+	
+Block:
+	GBlock | MBlock;
+	
+GBlock:
+	name=GCODE arguments+=Argument*;		
+MBlock:
+	name=MCODE arguments+=Argument*;
+	
+Argument:
+	COORD | SCODE | FCODE | ECODE;
+
+//terminal 
+terminal NUM returns ecore::EFloat: '-'? INT ('.' INT)?;
+terminal INT returns ecore::EInt: ('0'..'9')+;
+
+terminal GCODE		: 'G'INT;
+terminal MCODE		: 'M'INT;
+terminal SCODE		: 'S'NUM;
+terminal FCODE		: 'F'NUM;
+terminal ECODE		: 'E'NUM;
+terminal COORD		: 'X'NUM |'Y'NUM | 'Z'NUM;
+
+terminal SL_COMMENT 	: ';' !('\n'|'\r')* ('\r'? '\n')?;
+terminal WS : (' '|'\t'|'\r'|'\n')+;
+
+terminal ANY_OTHER: .;
